@@ -7,7 +7,7 @@ from typing_extensions import Self
 class Cell():
     def __init__(self, 
                  x1: float, x2: float, y1: float, y2: float, 
-                 win: Window, has_left_wall: bool = True, has_right_wall: bool = True, 
+                 win: Window=None, has_left_wall: bool = True, has_right_wall: bool = True,  # type: ignore
                  has_top_wall: bool = True, has_bottom_wall: bool = True):
         self.__x1 = x1
         self.__x2 = x2
@@ -30,14 +30,14 @@ class Cell():
             start = top_left + offset
             end = Point(top_left.x, bottom_right.y) + offset
             left = Line(start, end)
-            print(f"Drawing left wall from {start} to {end}")
+            # print(f"Drawing left wall from {start} to {end}")
             self.__win.draw_line(left, "white")
         
         if self.has_right_wall:
             # offset = Point(self.__x1, self.__y1)
             start = Point(bottom_right.x, top_left.y) + offset
             end = bottom_right + offset
-            print(f"Drawing right wall from {start} to {end}")
+            # print(f"Drawing right wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
 
@@ -45,7 +45,7 @@ class Cell():
             # offset = Point(self.__x1, self.__y1)
             start = top_left + offset
             end = Point(bottom_right.x, top_left.y) + offset
-            print(f"Drawing top wall from {start} to {end}")
+            # print(f"Drawing top wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
         
@@ -53,7 +53,7 @@ class Cell():
             # offset = Point(self.__x1, self.__y1)
             start = Point(top_left.x, bottom_right.y) + offset
             end = bottom_right + offset
-            print(f"Drawing bottom wall from {start} to {end}")
+            # print(f"Drawing bottom wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
         
@@ -64,8 +64,8 @@ class Cell():
         else:
             colour = "red"
         
-        print(f"Drawing path from {self.center} to {to_cell.center}")
-        print(f"--- Self: top_left: ({self.__x1}, {self.__y1}) bottom_right: ({self.__x2}, {self.__y2})  center: {self.center}")
-        print(f"--- dest: top_left: ({to_cell.__x1}, {to_cell.__y1}) bottom_right: ({to_cell.__x2}, {to_cell.__y2})  center: {to_cell.center}")
+        # print(f"Drawing path from {self.center} to {to_cell.center}")
+        # print(f"--- Self: top_left: ({self.__x1}, {self.__y1}) bottom_right: ({self.__x2}, {self.__y2})  center: {self.center}")
+        # print(f"--- dest: top_left: ({to_cell.__x1}, {to_cell.__y1}) bottom_right: ({to_cell.__x2}, {to_cell.__y2})  center: {to_cell.center}")
         line = Line(self.center, to_cell.center)
         self.__win.draw_line(line, colour)

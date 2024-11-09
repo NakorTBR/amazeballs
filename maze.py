@@ -13,7 +13,7 @@ class Maze():
         num_cols: int,
         cell_size_x: float,
         cell_size_y: float,
-        win: Window,
+        win: Window = None, # type: ignore
     ):
         self.__x1 = x1
         self.__y1 = y1
@@ -22,10 +22,15 @@ class Maze():
         self.__cell_size_x = cell_size_x
         self.__cell_size_y = cell_size_y
         self.__win = win
+        self.fuckoff = "fuck off"
+
+        self.__cells = []
+        self._create_cells()
+
+    def get_cells(self):
+        return self.__cells
 
     def _create_cells(self):
-        self.__cells = []
-
         for x in range(self.__num_cols):
             self.__cells.append([])
             for y in range(self.__num_rows):
@@ -36,9 +41,10 @@ class Maze():
                          win=self.__win)
                 self.__cells[x].append(c)
         
-        for x in range(self.__num_cols):
-            for y in range(self.__num_rows):
-                self._draw_cell(self.__cells[x][y])
+        if self.__win:
+            for x in range(self.__num_cols):
+                for y in range(self.__num_rows):
+                    self._draw_cell(self.__cells[x][y])
     
     def _draw_cell(self, cell: Cell):
         cell.draw(Point(0.0, 0.0), Point(self.__cell_size_x, self.__cell_size_y))

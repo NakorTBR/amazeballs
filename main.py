@@ -30,7 +30,6 @@ def main():
     cell_size_x = (screen_x - 2 * margin) / num_cols
     cell_size_y = (screen_y - 2 * margin) / num_rows
     maze = Maze(0.0, 0.0, num_cols, num_rows, cell_size_x, cell_size_y, win)
-    maze._create_cells()
 
     win.wait_for_close()
 
