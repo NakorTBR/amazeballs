@@ -3,6 +3,7 @@ from window import Window
 from point import Point
 from line import Line
 from typing_extensions import Self
+import globals
 
 class Cell():
     def __init__(self, 
@@ -25,6 +26,9 @@ class Cell():
 
     
     def draw(self, top_left: Point, bottom_right: Point):
+        if globals.DEBUG_MODE:
+            return
+        
         offset = Point(self.__x1, self.__y1)
         if self.has_left_wall:
             start = top_left + offset
@@ -76,6 +80,9 @@ class Cell():
             self.__win.draw_line(left, "black")
         
     def draw_move(self, to_cell: Self, undo=False):
+        if globals.DEBUG_MODE:
+            print("Exiting draw move due to debug mode.")
+            return
         colour = ""
         if undo:
             colour = "gray"
