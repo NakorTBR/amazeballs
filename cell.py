@@ -26,36 +26,53 @@ class Cell():
     def draw(self, top_left: Point, bottom_right: Point):
         offset = Point(self.__x1, self.__y1)
         if self.has_left_wall:
-            # offset = Point(self.__x1, self.__y1)
             start = top_left + offset
             end = Point(top_left.x, bottom_right.y) + offset
             left = Line(start, end)
             # print(f"Drawing left wall from {start} to {end}")
             self.__win.draw_line(left, "white")
+        else:
+            start = top_left + offset
+            end = Point(top_left.x, bottom_right.y) + offset
+            left = Line(start, end)
+            self.__win.draw_line(left, "black")
         
         if self.has_right_wall:
-            # offset = Point(self.__x1, self.__y1)
             start = Point(bottom_right.x, top_left.y) + offset
             end = bottom_right + offset
             # print(f"Drawing right wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
+        else:
+            start = Point(bottom_right.x, top_left.y) + offset
+            end = bottom_right + offset
+            left = Line(start, end)
+            self.__win.draw_line(left, "black")
 
         if self.has_top_wall:
-            # offset = Point(self.__x1, self.__y1)
             start = top_left + offset
             end = Point(bottom_right.x, top_left.y) + offset
             # print(f"Drawing top wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
+        else:
+            start = top_left + offset
+            end = Point(bottom_right.x, top_left.y) + offset
+            left = Line(start, end)
+            self.__win.draw_line(left, "black")
         
         if self.has_bottom_wall:
-            # offset = Point(self.__x1, self.__y1)
             start = Point(top_left.x, bottom_right.y) + offset
             end = bottom_right + offset
             # print(f"Drawing bottom wall from {start} to {end}")
             left = Line(start, end)
             self.__win.draw_line(left, "white")
+        else:
+            start = Point(top_left.x, bottom_right.y) + offset
+            end = bottom_right + offset
+            # print(f"Drawing bottom wall from {start} to {end}")
+            left = Line(start, end)
+            self.__win.draw_line(left, "black")
         
     def draw_move(self, to_cell: Self, undo=False):
         colour = ""

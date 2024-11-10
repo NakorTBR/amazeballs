@@ -22,10 +22,10 @@ class Maze():
         self.__cell_size_x = cell_size_x
         self.__cell_size_y = cell_size_y
         self.__win = win
-        self.fuckoff = "fuck off"
-
+        
         self.__cells = []
         self._create_cells()
+        self._break_entrance_and_exit()
 
     def get_cells(self):
         return self.__cells
@@ -54,3 +54,11 @@ class Maze():
         while True:
             self.__win.redraw()
             time.sleep(0.05)
+
+    def _break_entrance_and_exit(self):
+        start: Cell = self.__cells[0][0]
+        end: Cell = self.__cells[-1][-1]
+        start.has_left_wall = False
+        self._draw_cell(start)
+        end.has_right_wall = False
+        self._draw_cell(end)
